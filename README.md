@@ -1,1 +1,1 @@
-# Sign-
+my_model_2.keras - wyrenowany testowo na dwóch gestach (cześć i dzień dobry)

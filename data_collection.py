@@ -52,7 +52,7 @@ def extract_keypoints(results):
 def main():
     actions = np.array(lesson_1)
     sequences = 30
-    frames = 20
+    frames = 30
     PATH = 'data'
 
     prepare_dataset_directory(actions, sequences, PATH)

@@ -1,16 +1,8 @@
 # https://www.youtube.com/@migam org
 
 lesson_1 = [
-    'CZEŚĆ',  
-    'DZIEŃ DOBRY',
-    'DOBRY WIECZÓR',
-    'JAK SIĘ CZUJESZ',
-    'JA DOBRZE, A TY',
-    'BARDZO DOBRZE',
-    'DOBRZE',
-    'DO WIDZENIA',
-    'DOBRANOC',
-    'DO ZOBACZENIA'
+    'CZEŚĆ',
+    'DZIEŃ DOBRY',  
 ]
 
 lesson_2 = [
