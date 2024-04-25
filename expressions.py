@@ -2,7 +2,13 @@
 
 lesson_1 = [
     'CZEŚĆ',
-    'DZIEŃ DOBRY',  
+    'DZIEŃ DOBRY',
+    'DOBRY WIECZÓR',
+    'JAK SIE CZUJESZ',
+    'DOBRZE',
+    'BARDZO DOBRZE',
+    'DO WIDZENIA',
+    'DOBRANOC',
 ]
 
 lesson_2 = [
