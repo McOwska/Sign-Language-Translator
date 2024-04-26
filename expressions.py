@@ -14,7 +14,7 @@ lesson_1 = [
 lesson_2 = [
     'JA', 
     'TY', 
-    'ON/ONA', 
+    'ON_ONA', 
     'ONI', 
     'MY', 
     'MAM', 
@@ -30,7 +30,7 @@ lesson_3 = [
     'JEST', 
     'ŻONA', 
     'POZNAĆ', 
-    'TWÓJ/SWÓJ', 
+    'TWÓJ_SWÓJ', 
     'DZIĘKOWAĆ', 
     'MĘŻCZYZNA', 
     'PRZYJACIEL', 
@@ -38,13 +38,13 @@ lesson_3 = [
     'ROZMAWIAĆ', 
     'KOBIETA', 
     'WAS', 
-    'JEGO/JEJ', 
+    'JEGO_JEJ', 
     'PRZEPRASZAĆ', 
     'PANI', 
     'SZKOŁA', 
     'MĄŻ', 
     'PAN', 
-    'MÓJ/SWÓJ'
+    'MÓJ_SWÓJ'
 ]
 
 lesson_4 = [
