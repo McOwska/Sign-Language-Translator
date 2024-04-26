@@ -35,7 +35,7 @@ lesson_3 = [
     'MĘŻCZYZNA', 
     'PRZYJACIEL', 
     'DZIECI', 
-    'ROZMAWIAĆ,' 
+    'ROZMAWIAĆ', 
     'KOBIETA', 
     'WAS', 
     'JEGO/JEJ', 
