@@ -1,4 +1,5 @@
 my_model_2.keras - wyrenowany testowo na dwóch gestach (cześć i dzień dobry)
+my_model_3_1.keras - wytrenowany na 3 pierwszych lekcjach, dla każdej +- 30 gestów
 
 ## Nagrywanie danych
 * data_collection.py
@@ -9,3 +10,9 @@ my_model_2.keras - wyrenowany testowo na dwóch gestach (cześć i dzień dobry)
     * strzałka w prawo - zmiana gestu na kolejny z listy
     * ESC - koniec nagrywania
 * z istotnych rzeczy, kolejne gesty powinny się po nagraniu dodawać do odpowiedniego katalogu - numerują się automatycznie po kolei, więc przed nagrywaniem musimy się pilnować, żeby sobie wszystko z gita wcześniej ściągnąć i potem scommitować, tak żeby sie numerki zgadzały
+
+## Trening modelu
+Do treningu modelu można użyć skryptu model.py, ale chyba wygodniej to zrobić wykrozystując notebook training.ipynb (z potencjalnie głupich ale istotnych błędów - trzeba pamiętać o zmianie nazwy modelu, który zapisujemy).
+
+## Uruchomienie aplikacji
+Główna aplikacja znajduje się w skrypcie main.py. Po uruchomieniu (trzeba pamiętać o odpowiedniej nazwie modelu + klasy, które chcemy przewidywać, muszą się zgadzać z tymi, które aktualnie są w folderze data - przydałoby się to w przyszłości jakoś ogarnąć lepiej) powinno się otworzyć takie samo okienko jak przy nagrywaniu danych. po wciśnięciu spacji zaczyna się zbieranie 30 klatek do predykcji (póki co przed każdym gestem trzeba tą spację wciskać, potencjalnie do ogarnięcia w przyszłości, żeby tłumaczyło się "symultanicznie")
