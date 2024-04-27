@@ -40,7 +40,6 @@ def process_image_and_extract_keypoints(cap, holistic, action, sequence, frame, 
     if frame is not None:
         keypoints = extract_keypoints(results)
         np.save(os.path.join(path, action, str(sequence), str(frame)), keypoints)
-        print("saved")
         print((os.path.join(path, action, str(sequence), str(frame))))
     
     return image
