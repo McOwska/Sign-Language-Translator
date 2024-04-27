@@ -11,6 +11,12 @@ from sklearn import metrics
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense
 
+from tensorflow.keras.callbacks import TensorBoard
+import datetime
+log_dir = os.path.join('logs', 'fit', datetime.datetime.now().strftime("%Y%m%d-%H%M%S"))
+print(log_dir)
+tensorboard_callback = TensorBoard(log_dir=log_dir, histogram_freq=1)
+
 # Set the path to the data directory
 PATH = os.path.join('data')
 
@@ -18,8 +24,8 @@ PATH = os.path.join('data')
 actions = np.array(os.listdir(PATH))
 
 # Define the number of sequences and frames
-sequences = 30
-frames = 30
+# sequences = 30
+# frames = 30
 
 # Create a label map to map each action label to a numeric value
 label_map = {label:num for num, label in enumerate(actions)}
@@ -28,13 +34,31 @@ label_map = {label:num for num, label in enumerate(actions)}
 landmarks, labels = [], []
 
 # Iterate over actions and sequences to load landmarks and corresponding labels
-for action, sequence in product(actions, range(sequences)):
-    temp = []
-    for frame in range(frames):
-        npy = np.load(os.path.join(PATH, action, str(sequence), str(frame) + '.npy'))
-        temp.append(npy)
-    landmarks.append(temp)
-    labels.append(label_map[action])
+for action in actions:
+    action_path = os.path.join(PATH, action)
+    
+    # List all directories for the current action
+    sequences = os.listdir(action_path)
+    
+    # Iterate over each sequence for the current action
+    for sequence in sequences:
+        temp = []
+        sequence_path = os.path.join(action_path, sequence)
+        
+        # List all frames in the current sequence
+        frames = sorted(os.listdir(sequence_path))  # Sort to ensure the frames are in order
+        
+        # Load all frames for the current sequence
+        for frame in frames:
+            npy_path = os.path.join(sequence_path, frame)
+            if os.path.isfile(npy_path):  # Check if the path is indeed a file
+                npy = np.load(npy_path)
+                temp.append(npy)
+        
+        # Append landmarks and corresponding label only if temp is not empty
+        if temp:
+            landmarks.append(temp)
+            labels.append(label_map[action])
 
 # Convert landmarks and labels to numpy arrays
 X, Y = np.array(landmarks), to_categorical(labels).astype(int)
@@ -53,10 +77,10 @@ model.add(Dense(actions.shape[0], activation='softmax'))
 # Compile the model with Adam optimizer and categorical cross-entropy loss
 model.compile(optimizer='Adam', loss='categorical_crossentropy', metrics=['categorical_accuracy'])
 # Train the model
-model.fit(X_train, Y_train, epochs=100)
+model.fit(X_train, Y_train, epochs=100, callbacks=[tensorboard_callback])
 
 # Save the trained model
-model.save('my_model_2.keras')
+model.save('my_model_3.keras')
 
 # Make predictions on the test set
 predictions = np.argmax(model.predict(X_test), axis=1)
