@@ -40,6 +40,8 @@ def process_image_and_extract_keypoints(cap, holistic, action, sequence, frame, 
     if frame is not None:
         keypoints = extract_keypoints(results)
         np.save(os.path.join(path, action, str(sequence), str(frame)), keypoints)
+        print("saved")
+        print((os.path.join(path, action, str(sequence), str(frame))))
     
     return image
 
@@ -57,8 +59,8 @@ def extract_keypoints(results):
 
 
 def main():
-    actions = np.array(lesson_3)
-    sequences = 30
+    actions = np.array(lesson_1)
+    sequences = 100
     frames = 30
     PATH = 'data'
 
@@ -76,6 +78,10 @@ def main():
                 # to start recording press space
                 print(f"Collecting data for: {action}.")
                 print("Press space to start recording, right arrow to skip to the next action, ESC to exit.")
+                
+                directory_list = os.listdir(os.path.join("data/", action))
+                directories_no = len(directory_list)
+
                 while not keyboard.is_pressed(' '):
                     image= process_image_and_extract_keypoints(cap, holistic, action, sequence, None, PATH)
                     cv2.imshow('Camera', image)
@@ -92,7 +98,7 @@ def main():
                 print(f"Collection data for: {action} sequence no: {sequence}.")
                 for frame in range(frames):
                     print(f"Collecting frames. Action: {action} frame no: {frame}")
-                    image = process_image_and_extract_keypoints(cap, holistic, action, sequence, frame, PATH)
+                    image = process_image_and_extract_keypoints(cap, holistic, action, directories_no, frame, PATH)
                     cv2.imshow('Camera', image)
                     if cv2.waitKey(1) & 0xFF == 27:
                         break
