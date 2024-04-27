@@ -1,4 +1,5 @@
 my_model_2.keras - wyrenowany testowo na dwóch gestach (cześć i dzień dobry)
+my_model_3_1.keras - wytrenowany na 3 pierwszych lekcjach, dla każdej +- 30 gestów
 
 ## Nagrywanie danych
 * data_collection.py
