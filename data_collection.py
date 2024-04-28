@@ -58,7 +58,7 @@ def extract_keypoints(results):
 
 
 def main():
-    actions = np.array(lesson_1)
+    actions = np.array(lesson_2)    
     sequences = 100
     frames = 30
     PATH = 'data'
@@ -76,7 +76,7 @@ def main():
             for sequence in range(sequences):
                 # to start recording press space
                 print(f"Collecting data for: {action}.")
-                print("Press space to start recording, right arrow to skip to the next action, ESC to exit.")
+                print("Press space to start recording, right arrow to skip to the next action, left arrow to go back to the previous action, esc to exit.")
                 
                 directory_list = os.listdir(os.path.join("data/", action))
                 directories_no = len(directory_list)
@@ -90,6 +90,9 @@ def main():
                         return
                     if keyboard.is_pressed('right'):
                         flag += 1
+                        break
+                    if keyboard.is_pressed('left'):
+                        flag -= 1
                         break
                 if flag != 0:
                     break
