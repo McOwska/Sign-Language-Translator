@@ -28,7 +28,7 @@ lesson_2 = [
 
 lesson_3 = [
     'JEST', 
-    'ŻONA', 
+    'ŻONA_MĄŻ', 
     'POZNAĆ', 
     'TWÓJ_SWÓJ', 
     'DZIĘKOWAĆ', 
@@ -42,7 +42,6 @@ lesson_3 = [
     'PRZEPRASZAĆ', 
     'PANI', 
     'SZKOŁA', 
-    'MĄŻ', 
     'PAN', 
     'MÓJ_SWÓJ'
 ]
