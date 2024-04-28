@@ -53,7 +53,7 @@ with open('labels_my_model_4.json', 'r') as f:
     
 actions = np.array(list(label_map.keys()))
 
-model = load_model('my_model_4_1.keras')
+model = load_model('my_model_4_3.keras')
 
 cap = cv2.VideoCapture(0)
 if not cap.isOpened():
@@ -80,6 +80,7 @@ def main():
             print("Recognizing the action....") 
             while len(keypoints) < 30:
                 image, keypoint = process_image_and_extract_keypoints(cap, holistic)
+                print(len(keypoints))
                 cv2.imshow('Camera', image)
                 keypoints.append(keypoint)
                 if cv2.waitKey(1) & 0xFF == 27:  # ESC key to exit
