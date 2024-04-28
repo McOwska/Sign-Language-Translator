@@ -10,6 +10,7 @@ from my_functions import *
 import keyboard
 from tensorflow.keras.models import load_model
 from collections import deque
+import json
 
 
 def process_image_and_extract_keypoints(cap, holistic):
@@ -47,9 +48,12 @@ def extract_keypoints(results):
 
 PATH = os.path.join('data')
 
-actions = np.array(os.listdir(PATH))
+with open('labels_my_model_4.json', 'r') as f:
+    label_map = json.load(f)
+    
+actions = np.array(list(label_map.keys()))
 
-model = load_model('my_model_3_1.keras')
+model = load_model('my_model_4_1.keras')
 
 cap = cv2.VideoCapture(0)
 if not cap.isOpened():
