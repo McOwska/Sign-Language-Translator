@@ -91,9 +91,6 @@ def main():
                     if keyboard.is_pressed('right'):
                         flag += 1
                         break
-                    if keyboard.is_pressed('left'):
-                        flag -= 1
-                        break
                 if flag != 0:
                     break
                 create_directory(sequence, action)
