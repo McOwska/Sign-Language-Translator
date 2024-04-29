@@ -1,6 +1,3 @@
-# %%
-
-# Import necessary libraries
 import numpy as np
 import os
 import string
@@ -26,7 +23,6 @@ def process_image_and_extract_keypoints(cap, holistic):
     image.flags.writeable = True
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
     
-    # draw landmarks
     mp.solutions.drawing_utils.draw_landmarks(image, results.left_hand_landmarks, mp.solutions.holistic.HAND_CONNECTIONS)
     mp.solutions.drawing_utils.draw_landmarks(image, results.right_hand_landmarks, mp.solutions.holistic.HAND_CONNECTIONS)
     
@@ -34,7 +30,6 @@ def process_image_and_extract_keypoints(cap, holistic):
     
     return image, keypoints
 
-# Extracting keypoints
 def extract_keypoints(results):
     keypoints = np.array([])
     for landmark_list in [results.left_hand_landmarks, results.right_hand_landmarks]:
@@ -42,7 +37,6 @@ def extract_keypoints(results):
             for landmark in landmark_list.landmark:
                 keypoints = np.append(keypoints, [landmark.x, landmark.y, landmark.z])
         else:
-            #  when there are no keypoints detected
             keypoints = np.append(keypoints, np.zeros(21*3)) 
     return keypoints
 
