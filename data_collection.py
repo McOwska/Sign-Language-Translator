@@ -51,7 +51,7 @@ def extract_keypoints(results):
 
 
 def main():
-    actions = np.array(lesson_2)    
+    actions = np.array(lesson_3)    
     sequences = 100
     frames = 30
     PATH = 'data'
