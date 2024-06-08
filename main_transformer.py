@@ -98,6 +98,7 @@ def main():
                 image, keypoint = process_image_and_extract_keypoints(cap, holistic)
                 height, width, _ = image.shape
                 cv2.putText(image, action_text, (width // 2 - len(action_text) * 10, height - 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2, cv2.LINE_AA)
+                cv2.putText(image, "nacisnij SPACJE by rozpoznac gest", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2, cv2.LINE_AA)
                 cv2.imshow('Camera', image)
                 
                 if cv2.waitKey(1) & 0xFF == 27:  # ESC key to exit
@@ -108,6 +109,8 @@ def main():
             print("Recognizing the action....") 
             while len(keypoints) < 30:
                 image, keypoint = process_image_and_extract_keypoints(cap, holistic)
+                height,  width, _ = image.shape
+                cv2.putText(image, "wykrywanie gestu", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 2, cv2.LINE_AA)
                 cv2.imshow('Camera', image)
                 keypoints.append(keypoint)
                 if cv2.waitKey(1) & 0xFF == 27:  # ESC key to exit
