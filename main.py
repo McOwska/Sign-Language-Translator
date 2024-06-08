@@ -47,23 +47,27 @@ with open('labels_my_model_4.json', 'r') as f:
     
 actions = np.array(list(label_map.keys()))
 
-model = load_model('my_model_4_3.keras')
+model = load_model('my_model_5.keras')
 
 cap = cv2.VideoCapture(0)
 if not cap.isOpened():
     print("Cannot access camera.")
     exit()
 
+
 def main():
     with mp.solutions.holistic.Holistic(min_detection_confidence=0.75, min_tracking_confidence=0.75) as holistic:
+        action_text = "" 
         while cap.isOpened():
-            
             image, keypoint = process_image_and_extract_keypoints(cap, holistic)
+            cv2.putText(image, action_text, (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2, cv2.LINE_AA)
             cv2.imshow('Camera', image)
             
             print("Press SPACE to recognize the action.")
             while not keyboard.is_pressed('space'):
                 image, keypoint = process_image_and_extract_keypoints(cap, holistic)
+                height, width, _ = image.shape
+                cv2.putText(image, action_text, (width // 2 - len(action_text) * 10, height - 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2, cv2.LINE_AA)
                 cv2.imshow('Camera', image)
                 
                 if cv2.waitKey(1) & 0xFF == 27:  # ESC key to exit
@@ -74,7 +78,6 @@ def main():
             print("Recognizing the action....") 
             while len(keypoints) < 30:
                 image, keypoint = process_image_and_extract_keypoints(cap, holistic)
-                print(len(keypoints))
                 cv2.imshow('Camera', image)
                 keypoints.append(keypoint)
                 if cv2.waitKey(1) & 0xFF == 27:  # ESC key to exit
@@ -88,14 +91,15 @@ def main():
             if np.amax(prediction) > 0.1:
                 predicted_index = np.argmax(prediction)
                 predicted_action = actions[predicted_index]
+                action_text = f"{predicted_action}"
                 print(f"Recognized action: {predicted_action} with confidence: {np.max(prediction):.2f}")
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
 
-
         cap.release()
         cv2.destroyAllWindows()
+
         
 if __name__ == "__main__":
     main()
